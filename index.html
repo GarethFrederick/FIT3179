@@ -1,10 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Test HTML</title>
-</head>
-<body>
-    <h1> Heading 1 </h1>
-    <p> First Paragraph</p>
-</body>
-</html>
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "EU Growth Rates from 1994 to 2019",
+  "config": {
+    "view": {"width": 600, "height": 450}
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/eu_growth.csv"
+  },
+  "mark": {
+    "type": "line",
+    "point": true
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "temporal",
+      "axis": {
+        "title": "Year",
+        "labelFontSize": 14, // Increase label font size
+        "titleFontSize": 16 // Increase title font size
+      }
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "title": "Growth Rate (%)",
+        "labelFontSize": 14, // Increase label font size
+        "titleFontSize": 16 // Increase title font size
+      },
+      "scale": {"domain": [-20, 20]}
+    },
+    "color": {
+      "field": "country",
+      "type": "nominal",
+      "legend": null,
+      "scale": {"scheme": "category10"}
+    }
+  },
+  "transform": [
+    {
+      "filter": {
+        "selection": "country_filter"
+      }
+    }
+  ],
+  "selection": {
+    "country_filter": {
+      "type": "single",
+      "fields": ["country"],
+      "init": {"country": "Average"},
+      "bind": {
+        "input": "select",
+        "options": [
+          "Average",
+          "Austria",
+          "Belgium",
+          "Bulgaria",
+          "Cyprus",
+          "Czechia",
+          "Germany",
+          "Denmark",
+          "Spain",
+          "Estonia",
+          "Finland",
+          "France",
+          "Greece",
+          "Croatia",
+          "Hungary",
+          "Ireland",
+          "Italy",
+          "Lithuania",
+          "Luxembourg",
+          "Latvia",
+          "Malta",
+          "Netherlands",
+          "Poland",
+          "Portugal",
+          "Romania",
+          "Slovakia",
+          "Slovenia",
+          "Sweden"
+        ],
+        "name": "Country Selection"
+      }
+    }
+  }
+}
