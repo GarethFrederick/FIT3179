@@ -26,6 +26,7 @@ Romania,1994,4.04
 Slovakia,1994,5.8
 Slovenia,1994,4.94
 Sweden,1994,3.51
+Average,1994,2.765700741
 Austria,1995,1.66
 Belgium,1995,2.06
 Bulgaria,1995,4.12
@@ -53,6 +54,7 @@ Romania,1995,7.32
 Slovakia,1995,5.53
 Slovenia,1995,3.78
 Sweden,1995,4.55
+Average,1995,4.056259259
 Austria,1996,2.45
 Belgium,1996,0.923
 Bulgaria,1996,-8.35
@@ -80,6 +82,7 @@ Romania,1996,4.2
 Slovakia,1996,6.72
 Slovenia,1996,3.38
 Sweden,1996,1.35
+Average,1996,2.829259259
 Austria,1997,1.73
 Belgium,1997,3.13
 Bulgaria,1997,-4.49
@@ -107,6 +110,7 @@ Romania,1997,-5.83
 Slovakia,1997,5.61
 Slovenia,1997,4.69
 Sweden,1997,2.51
+Average,1997,4.007111111
 Austria,1998,3.48
 Belgium,1998,1.7
 Bulgaria,1998,5.23
@@ -134,6 +138,7 @@ Romania,1998,-4.6
 Slovakia,1998,3.61
 Slovenia,1998,3.42
 Sweden,1998,3.1
+Average,1998,3.680962963
 Austria,1999,3.09
 Belgium,1999,3.23
 Bulgaria,1999,3.32
@@ -161,6 +166,7 @@ Romania,1999,-1.04
 Slovakia,1999,0.29
 Slovenia,1999,5.16
 Sweden,1999,3.74
+Average,1999,3.126522222
 Austria,2000,3.12
 Belgium,2000,3.47
 Bulgaria,2000,6.41
@@ -188,6 +194,7 @@ Romania,2000,2.23
 Slovakia,2000,0.706
 Slovenia,2000,3.94
 Sweden,2000,4.91
+Average,2000,4.545407407
 Austria,2001,0.587
 Belgium,2001,0.507
 Bulgaria,2001,5.18
@@ -215,6 +222,7 @@ Romania,2001,5.81
 Slovakia,2001,3.22
 Slovenia,2001,2.92
 Sweden,2001,0.931
+Average,2001,2.893614815
 Austria,2002,0.687
 Belgium,2002,1.31
 Bulgaria,2002,5.95
@@ -242,6 +250,7 @@ Romania,2002,5.11
 Slovakia,2002,4.12
 Slovenia,2002,3.47
 Sweden,2002,1.88
+Average,2002,2.816288889
 Austria,2003,0.998
 Belgium,2003,0.822
 Bulgaria,2003,5.31
@@ -269,6 +278,7 @@ Romania,2003,5.01
 Slovakia,2003,4.17
 Slovenia,2003,2.63
 Sweden,2003,1.77
+Average,2003,2.675333333
 Austria,2004,2.18
 Belgium,2004,2.81
 Bulgaria,2004,7.6
@@ -296,6 +306,7 @@ Romania,2004,8.62
 Slovakia,2004,5.42
 Slovenia,2004,4.29
 Sweden,2004,3.91
+Average,2004,3.916962963
 Austria,2005,1.95
 Belgium,2005,1.51
 Bulgaria,2005,7.24
@@ -323,6 +334,7 @@ Romania,2005,4.22
 Slovakia,2005,6.03
 Slovenia,2005,4.03
 Sweden,2005,2.74
+Average,2005,3.924518519
 Austria,2006,3.13
 Belgium,2006,2.03
 Bulgaria,2006,7.06
@@ -350,6 +362,7 @@ Romania,2006,8.04
 Slovakia,2006,8.15
 Slovenia,2006,5.54
 Sweden,2006,3.8
+Average,2006,4.734814815
 Austria,2007,3.29
 Belgium,2007,2.17
 Bulgaria,2007,6.99
@@ -377,6 +390,7 @@ Romania,2007,6.43
 Slovakia,2007,10.4
 Slovenia,2007,6.59
 Sweden,2007,2.65
+Average,2007,4.462777778
 Austria,2008,1
 Belgium,2008,0.206
 Bulgaria,2008,6.66
@@ -404,6 +418,7 @@ Romania,2008,7.52
 Slovakia,2008,5.66
 Slovenia,2008,3.39
 Sweden,2008,-1.55
+Average,2008,0.852
 Austria,2009,-4.09
 Belgium,2009,-3.56
 Bulgaria,2009,-4.94
@@ -431,6 +446,7 @@ Romania,2009,-6.44
 Slovakia,2009,-5.18
 Slovenia,2009,-8.84
 Sweden,2009,-5.83
+Average,2009,-6.151851852
 Austria,2010,1.75
 Belgium,2010,1.6
 Bulgaria,2010,1.18
@@ -458,6 +474,7 @@ Romania,2010,-0.976
 Slovakia,2010,4.14
 Slovenia,2010,0.517
 Sweden,2010,5.42
+Average,2010,1.312185185
 Austria,2011,2.29
 Belgium,2011,0.297
 Bulgaria,2011,4.31
@@ -485,6 +502,7 @@ Romania,2011,2.46
 Slovakia,2011,2.97
 Slovenia,2011,0.442
 Sweden,2011,3.03
+Average,2011,1.964148148
 Austria,2012,0.336
 Belgium,2012,-0.984
 Bulgaria,2012,1.21
@@ -512,6 +530,7 @@ Romania,2012,0.915
 Slovakia,2012,1.58
 Slovenia,2012,-2.79
 Sweden,2012,0.157
+Average,2012,-0.188677778
 Austria,2013,0.131
 Belgium,2013,-0.351
 Bulgaria,2013,1.47
@@ -539,6 +558,7 @@ Romania,2013,3.73
 Slovakia,2013,0.819
 Slovenia,2013,-1.27
 Sweden,2013,0.698
+Average,2013,-0.132527037
 Austria,2014,1.27
 Belgium,2014,0.955
 Bulgaria,2014,2.11
@@ -566,6 +586,7 @@ Romania,2014,2.44
 Slovakia,2014,2.18
 Slovenia,2014,0.166
 Sweden,2014,1.93
+Average,2014,1.039962963
 Austria,2015,1.31
 Belgium,2015,0.781
 Bulgaria,2015,3.02
@@ -593,6 +614,7 @@ Romania,2015,2.69
 Slovakia,2015,2.83
 Slovenia,2015,0.786
 Sweden,2015,1.76
+Average,2015,1.77492963
 Austria,2016,1.2
 Belgium,2016,0.654
 Bulgaria,2016,3.52
@@ -620,6 +642,7 @@ Romania,2016,3.08
 Slovakia,2016,3.38
 Slovenia,2016,1.32
 Sweden,2016,1.84
+Average,2016,1.997399259
 Austria,2017,1.03
 Belgium,2017,0.723
 Bulgaria,2017,3.52
@@ -647,6 +670,7 @@ Romania,2017,3.56
 Slovakia,2017,3.48
 Slovenia,2017,1.59
 Sweden,2017,1.72
+Average,2017,2.097555556
 Austria,2018,1.03
 Belgium,2018,0.764
 Bulgaria,2018,3.52
@@ -674,6 +698,7 @@ Romania,2018,3.66
 Slovakia,2018,3.48
 Slovenia,2018,1.69
 Sweden,2018,1.72
+Average,2018,2.125518519
 Austria,2019,0.991
 Belgium,2019,0.857
 Bulgaria,2019,3.52
@@ -701,3 +726,4 @@ Romania,2019,3.72
 Slovakia,2019,3.48
 Slovenia,2019,1.71
 Sweden,2019,1.7
+Average,2019,2.072518519
