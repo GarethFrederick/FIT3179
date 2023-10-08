@@ -80,97 +80,107 @@
       <div id="visualization2">
          <script>
             const spec2 = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "title": "EU Growth Rates from 1994 to 2019",
-            "config": {"view": {"width": 600, "height": 450}},
-            "data": {
-            "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/eu_growth.csv"
-            },
-            "layer": [
-            {
-            "mark": {"type": "line", "point": true},
-            "encoding": {
-              "x": {
-                "field": "year",
-                "type": "temporal",
-                "axis": {"title": "Year", "labelFontSize": 12, "titleFontSize": 14}
+              "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+              "title": "EU Growth Rates from 1994 to 2019",
+              "config": {"view": {"width": 600, "height": 450}},
+              "data": {
+                "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/eu_growth.csv"
               },
-              "y": {
-                "field": "value",
-                "type": "quantitative",
-                "axis": {
-                  "title": "Growth Rate (%)",
-                  "labelFontSize": 12,
-                  "titleFontSize": 14
+              "layer": [
+                {
+                  "mark": {"type": "line", "point": true},
+                  "encoding": {
+                    "x": {
+                      "field": "year",
+                      "type": "temporal",
+                      "axis": {"title": "Year", "labelFontSize": 12, "titleFontSize": 14}
+                    },
+                    "y": {
+                      "field": "value",
+                      "type": "quantitative",
+                      "axis": {
+                        "title": "Growth Rate (%)",
+                        "labelFontSize": 12,
+                        "titleFontSize": 14
+                      },
+                      "scale": {"domain": [-20, 20]}
+                    },
+                    "color": {
+                      "field": "country",
+                      "type": "nominal",
+                      "legend": null,
+                      "scale": {"scheme": "category10"}
+                    },
+                    "tooltip": [
+                      {"field": "country", "title": "Country/Measure: "},
+                      {
+                        "field": "year",
+                        "title": "Year: ",
+                        "type": "temporal",
+                        "timeUnit": "year"
+                      },
+                      {"field": "value", "title": "Growth Rate (%): ", "format": ".3f"}
+                    ]
+                  },
+                  "transform": [{"filter": {"selection": "country_filter"}}],
+                  "selection": {
+                    "country_filter": {
+                      "type": "single",
+                      "fields": ["country"],
+                      "init": {"country": "Average"},
+                      "bind": {
+                        "input": "select",
+                        "options": [
+                          "Average",
+                          "Austria",
+                          "Belgium",
+                          "Bulgaria",
+                          "Cyprus",
+                          "Czechia",
+                          "Germany",
+                          "Denmark",
+                          "Spain",
+                          "Estonia",
+                          "Finland",
+                          "France",
+                          "Greece",
+                          "Croatia",
+                          "Hungary",
+                          "Ireland",
+                          "Italy",
+                          "Lithuania",
+                          "Luxembourg",
+                          "Latvia",
+                          "Malta",
+                          "Netherlands",
+                          "Poland",
+                          "Portugal",
+                          "Romania",
+                          "Slovakia",
+                          "Slovenia",
+                          "Sweden"
+                        ],
+                        "name": "Country Selection"
+                      }
+                    }
+                  }
                 },
-                "scale": {"domain": [-20, 20]}
-              },
-              "color": {
-                "field": "country",
-                "type": "nominal",
-                "legend": null,
-                "scale": {"scheme": "category10"}
-              },
-              "tooltip": [
-                {"field": "country", "title": "Country/Measure: "},
-                {"field": "year", "title": "Year: ", "type": "temporal", "timeUnit": "year"},
-                {"field": "value", "title": "Growth Rate (%): ", "format": ".3f"}
-              ]
-            },
-            "transform": [{"filter": {"selection": "country_filter"}}],
-            "selection": {
-              "country_filter": {
-                "type": "single",
-                "fields": ["country"],
-                "init": {"country": "Average"},
-                "bind": {
-                  "input": "select",
-                  "options": [
-                    "Average",
-                    "Austria",
-                    "Belgium",
-                    "Bulgaria",
-                    "Cyprus",
-                    "Czechia",
-                    "Germany",
-                    "Denmark",
-                    "Spain",
-                    "Estonia",
-                    "Finland",
-                    "France",
-                    "Greece",
-                    "Croatia",
-                    "Hungary",
-                    "Ireland",
-                    "Italy",
-                    "Lithuania",
-                    "Luxembourg",
-                    "Latvia",
-                    "Malta",
-                    "Netherlands",
-                    "Poland",
-                    "Portugal",
-                    "Romania",
-                    "Slovakia",
-                    "Slovenia",
-                    "Sweden"
-                  ],
-                  "name": "Country Selection"
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "right",
+                    "baseline": "middle",
+                    "dx": 10,
+                    "fontSize": 11.5
+                  },
+                  "encoding": {
+                    "x": {"value": 205},
+                    "y": {"value": 310},
+                    "text": {"value": "2008 Global Financial Crisis"},
+                    "color": {"value": "black"}
+                  }
                 }
-              }
-            }
-            },
-            {
-            "mark": {"type": "text", "align": "right", "baseline": "middle", "dx": 10, "fontSize": 11.5
-            },
-            "encoding": {
-              "x": {"value":  455},  
-              "y": {"value": 310},  
-              "text": {"value": "2008 Global Financial Crisis"},
-              "color": {"value": "black"}
-            }
-            }
-            ]
+              ]
             };
             vegaEmbed("#visualization2", spec2, {
               mode: "vega-lite"
