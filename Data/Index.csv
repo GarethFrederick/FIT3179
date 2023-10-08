@@ -13,7 +13,7 @@ GEI,2016,8.1
 GEI,2017,7.9
 GEI,2018,8
 GEI,2019,8
-GEI,Choose,0
+GEI,Choose,0.1
 Happiness,2006,6.1
 Happiness,2007,6.2
 Happiness,2008,6.8
@@ -28,7 +28,7 @@ Happiness,2016,6.3
 Happiness,2017,6.5
 Happiness,2018,6.5
 Happiness,2019,6.6
-Happiness,Choose,0
+Happiness,Choose,0.1
 HDI,2006,8.5
 HDI,2007,8.6
 HDI,2008,8.6
@@ -43,7 +43,7 @@ HDI,2016,8.9
 HDI,2017,8.9
 HDI,2018,9
 HDI,2019,9
-HDI,Choose,0
+HDI,Choose,0.1
 SDI,2006,4.8
 SDI,2007,4.5
 SDI,2008,4.4
@@ -58,7 +58,7 @@ SDI,2016,4.4
 SDI,2017,4.4
 SDI,2018,4.4
 SDI,2019,4.4
-SDI,Choose,0
+SDI,Choose,0.1
 Democracy,2006,8.2
 Democracy,2007,8.2
 Democracy,2008,8.2
@@ -73,4 +73,4 @@ Democracy,2016,7.9
 Democracy,2017,7.9
 Democracy,2018,7.9
 Democracy,2019,7.9
-Democracy,Choose,0
+Democracy,Choose,0.1
