@@ -72,7 +72,7 @@
       },
       "title": "GDP per Capita (US$)",
       "legend": {
-        "title": "GDP per Capita",
+        "title": "GDP per Capita (US$)",
         "orient": "right"
       }
     },
