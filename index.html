@@ -1,449 +1,154 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>European Union Overview</title>
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.15.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
+    <title>Understanding the European Union: A Visual Analysis</title>
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.2.0/build/pure-min.css" integrity="sha384-7UE2/aLxcikvluV1XGghN2k6i+LoAwMjrZb4oVT9gGPPcLd2sjqAtgIinHb11RJz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.2.0/build/grids-responsive-min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Fondamento&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Style -->
+    <link href="https://fonts.googleapis.com/css?family=Ultra|Alfa+Slab+One|Merriweather:400,400i|Source+Serif+Pro:400,700" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>European Union Overview</h1>
-    <p>The European Union (EU) is a political and economic alliance of 27 European nations formed to promote peace, stability, and prosperity. Established in the aftermath of World War II, the EU has evolved into a unique supranational organization. It boasts a single market, a common currency (the Euro, used by 19 member states), and shared institutions like the European Parliament and European Commission.</p>
-    <p>One of the EU's primary objectives is to foster cooperation across various domains, including trade, environmental protection, and social policies. It is deeply committed to upholding democratic principles, human rights, and the rule of law.</p>
-    <p>Beyond its borders, the EU plays a pivotal role in shaping the future of Europe and addressing global challenges. Its substantial economic output provides a foundation for the insights presented in the following visualizations.</p>
-    <h2>GDP of EU from 2006 to 2019</h2>
-    <p>This visualization shows how EU GDP per Capita adjusted for inflation has changed from 2006 to 2019 .</p>
-    <div id="visualization1">
-      <script type="text/javascript">
-        const spec1 = {
-          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-          "width": 600,
-          "height": 600,
-          "title": "EU GDP per Capita Adjusted for Inflation",
-          "data": {
-            "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/20062019GDP.csv",
-            "format": {"type": "csv"}
-          },
-          "params": [
-            {
-              "name": "Current_Year",
-              "value": 2006,
-              "bind": {
-                "input": "range",
-                "min": 2006,
-                "max": 2019,
-                "step": 1,
-                "name": "Year: "
-              }
-            }
-          ],
-          "transform": [
-            {
-              "lookup": "country",
-              "from": {
-                "data": {
-                  "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/ne_50m_admin_0_countries.json",
-                  "format": {"type": "topojson", "feature": "ne_50m_admin_0_countries"}
-                },
-                "key": "properties.NAME",
-                "fields": ["properties", "type", "geometry"]
-              }
-            },
-            {"filter": "datum.year == Current_Year"}
-          ],
-          "projection": {"type": "mercator"},
-          "mark": {"type": "geoshape", "stroke": "black", "strokeWidth": 1},
-          "encoding": {
-            "color": {
-              "field": "GDP/Capita",
-              "type": "quantitative",
-              "scale": {
-                "type": "linear",
-                "domain": [5630, 112000],
-                "range": ["#6baed6", "#4292c6", "#2171b5", "#08519c", "#08306b"]
-              },
-              "title": "GDP per Capita (US$)",
-              "legend": {"title": "GDP per Capita", "orient": "right"}
-            },
-            "tooltip": [
-              {"field": "properties.NAME", "type": "nominal", "title": "Country: "},
-              {
-                "field": "GDP/Capita",
-                "type": "quantitative",
-                "title": "GDP per Capita (US$): "
-              }
-            ]
-          },
-          "config": {}
-        }
-        vegaEmbed("#visualization1", spec1, {
-          mode: "vega-lite", "actions": false
-        }).then(console.log).catch(console.warn);
-      </script>
-    </div>
-    <h2>EU Growth Rate 2006 to 2019</h2>
-    <p>This visualization illustrates the growth rates of the European Union from 2006 to 2019.</p>
-    <div id="visualization2">
-      <script>
-        const spec2 = {
-          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-          "title": "EU Growth Rates from 1994 to 2019",
-          "config": {
-            "view": {
-              "width": 600,
-              "height": 450
-            }
-          },
-          "data": {
-            "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/eu_growth.csv"
-          },
-          "layer": [{
-            "mark": {
-              "type": "line",
-              "point": true
-            },
-            "encoding": {
-              "x": {
-                "field": "year",
-                "type": "temporal",
-                "axis": {
-                  "title": "Year",
-                  "labelFontSize": 12,
-                  "titleFontSize": 14
-                }
-              },
-              "y": {
-                "field": "value",
-                "type": "quantitative",
-                "axis": {
-                  "title": "Growth Rate (%)",
-                  "labelFontSize": 12,
-                  "titleFontSize": 14
-                },
-                "scale": {
-                  "domain": [-20, 20]
-                }
-              },
-              "color": {
-                "field": "country",
-                "type": "nominal",
-                "legend": null,
-                "scale": {
-                  "scheme": "category10"
-                }
-              },
-              "tooltip": [{
-                "field": "country",
-                "title": "Country/Measure: "
-              }, {
-                "field": "year",
-                "title": "Year: ",
-                "type": "temporal",
-                "timeUnit": "year"
-              }, {
-                "field": "value",
-                "title": "Growth Rate (%): ",
-                "format": ".3f"
-              }]
-            },
-            "transform": [{
-              "filter": {
-                "selection": "country_filter"
-              }
-            }],
-            "selection": {
-              "country_filter": {
-                "type": "single",
-                "fields": ["country"],
-                "init": {
-                  "country": "Average"
-                },
-                "bind": {
-                  "input": "select",
-                  "options": ["Average", "Austria", "Belgium", "Bulgaria", "Cyprus", "Czechia", "Germany", "Denmark", "Spain", "Estonia", "Finland", "France", "Greece", "Croatia", "Hungary", "Ireland", "Italy", "Lithuania", "Luxembourg", "Latvia", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Sweden"],
-                  "name": "Country Selection"
-                }
-              }
-            }
-          }, {
-            "mark": {
-              "type": "text",
-              "align": "right",
-              "baseline": "middle",
-              "dx": 10,
-              "fontSize": 11.5
-            },
-            "encoding": {
-              "x": {
-                "value": 205
-              },
-              "y": {
-                "value": 310
-              },
-              "text": {
-                "value": "2008 Global Financial Crisis"
-              },
-              "color": {
-                "value": "black"
-              }
-            }
-          }]
-        };
-        vegaEmbed("#visualization2", spec2, {
-          mode: "vega-lite", "actions": false
-        }).then(console.log).catch(console.warn);
-      </script>
-    </div>
-    <h2>EU Key Indicators</h2>
-    <p>This radar chart displays key indicators for the European Union, including Human Development Index (HDI), Democracy, Sustainable Development Index(SDI), Happiness, and Gender Equality Index(GEI).</p>
-    <div id="visualization3">
-      <script>
-        const spec3 = {
-          "$schema": "https://vega.github.io/schema/vega/v5.json",
-          "title": {
-            "text": "Key Indicator Index of EU",
-            "align": "right"
-          },
-          "width": 400,
-          "height": 400,
-          "padding": 40,
-          "autosize": {
-            "type": "none",
-            "contains": "padding"
-          },
-          "signals": [{
-            "name": "radius",
-            "update": "width / 2"
-          }, {
-            "name": "Year",
-            "value": "Choose",
-            "bind": {
-              "input": "select",
-              "options": ["Choose", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"]
-            }
-          }],
-          "data": [{
-            "name": "table",
-            "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/Index.csv",
-            "format": {
-              "type": "csv",
-              "delimiter": ","
-            },
-            "transform": [{
-              "type": "filter",
-              "expr": "Year === null || datum.Year === Year"
-            }]
-          }, {
-            "name": "keys",
-            "source": "table",
-            "transform": [{
-              "type": "aggregate",
-              "groupby": ["Index"]
-            }]
-          }],
-          "scales": [{
-            "name": "angular",
-            "type": "point",
-            "range": {
-              "signal": "[-PI, PI]"
-            },
-            "padding": 0.5,
-            "domain": {
-              "data": "table",
-              "field": "Index"
-            }
-          }, {
-            "name": "radial",
-            "type": "linear",
-            "range": {
-              "signal": "[0, radius]"
-            },
-            "zero": true,
-            "nice": false,
-            "domain": {
-              "data": "table",
-              "field": "value"
-            },
-            "domainMin": 0
-          }, {
-            "name": "color",
-            "type": "ordinal",
-            "domain": {
-              "data": "table",
-              "field": "Year"
-            },
-            "range": {
-              "scheme": "category10"
-            }
-          }],
-          "encode": {
-            "enter": {
-              "x": {
-                "signal": "radius"
-              },
-              "y": {
-                "signal": "radius"
-              }
-            }
-          },
-          "marks": [{
-            "type": "group",
-            "name": "categories",
-            "zindex": 1,
-            "from": {
-              "facet": {
-                "data": "table",
-                "name": "facet",
-                "groupby": ["Year"]
-              }
-            },
-            "filter": {
-              "selection": "year_filter"
-            },
-            "marks": [{
-              "type": "line",
-              "name": "category-line",
-              "from": {
-                "data": "facet"
-              },
-              "encode": {
-                "enter": {
-                  "interpolate": {
-                    "value": "linear-closed"
-                  },
-                  "x": {
-                    "signal": "scale('radial', datum.value) * cos(scale('angular', datum.Index))"
-                  },
-                  "y": {
-                    "signal": "scale('radial', datum.value) * sin(scale('angular', datum.Index))"
-                  },
-                  "stroke": {
-                    "scale": "color",
-                    "field": "Year"
-                  },
-                  "strokeWidth": {
-                    "value": 1
-                  },
-                  "fill": {
-                    "scale": "color",
-                    "field": "Year"
-                  },
-                  "fillOpacity": {
-                    "value": 0.1
-                  }
-                },
-                "update": {
-                  "tooltip": {
-                    "signal": "datum.Index + ': ' + datum.value"
-                  }
-                }
-              }
-            }]
-          }, {
-            "type": "rule",
-            "name": "radial-grid",
-            "from": {
-              "data": "keys"
-            },
-            "zindex": 0,
-            "encode": {
-              "enter": {
-                "x": {
-                  "value": 0
-                },
-                "y": {
-                  "value": 0
-                },
-                "x2": {
-                  "signal": "radius * cos(scale('angular', datum.Index))"
-                },
-                "y2": {
-                  "signal": "radius * sin(scale('angular', datum.Index))"
-                },
-                "stroke": {
-                  "value": "lightgray"
-                },
-                "strokeWidth": {
-                  "value": 1
-                }
-              }
-            }
-          }, {
-            "type": "text",
-            "name": "key-label",
-            "from": {
-              "data": "keys"
-            },
-            "zindex": 1,
-            "encode": {
-              "enter": {
-                "x": {
-                  "signal": "(radius + 5) * cos(scale('angular', datum.Index))"
-                },
-                "y": {
-                  "signal": "(radius + 5) * sin(scale('angular', datum.Index))"
-                },
-                "text": {
-                  "field": "Index"
-                },
-                "align": [{
-                  "test": "abs(scale('angular', datum.Index)) > PI / 2",
-                  "value": "right"
-                }, {
-                  "value": "left"
-                }],
-                "baseline": [{
-                  "test": "scale('angular', datum.Index) > 0",
-                  "value": "top"
-                }, {
-                  "test": "scale('angular', datum.Index) == 0",
-                  "value": "middle"
-                }, {
-                  "value": "bottom"
-                }],
-                "fill": {
-                  "value": "black"
-                },
-                "fontWeight": {
-                  "value": "bold"
-                }
-              }
-            }
-          }, {
-            "type": "line",
-            "name": "outer-line",
-            "from": {
-              "data": "radial-grid"
-            },
-            "encode": {
-              "enter": {
-                "interpolate": {
-                  "value": "linear-closed"
-                },
-                "x": {
-                  "field": "x2"
-                },
-                "y": {
-                  "field": "y2"
-                },
-                "stroke": {
-                  "value": "lightgray"
-                },
-                "strokeWidth": {
-                  "value": 1
-                }
-              }
-            }
-          }],
-          "config": {}
-        };
-        vegaEmbed("#visualization3", spec3, {
-          mode: "vega-lite", "actions": false
-        }).then(console.log).catch(console.warn);
-      </script>
+    <div class="border">
+      <div class="page">
+        <hr>
+        <h1>Understanding the <b>European Union</b>: A Visual Analysis </h1>
+        <hr>
+        <hr>
+        <!-- Introduction -->
+        <div class="intro">
+          <div class="lefttext">
+            <p>
+              <b>The European Union (EU)</b>, a formidable alliance of <strong>27</strong> European nations, stands as a powerhouse of economic and social strength. With a combined <g>GDP</g> surpassing <strong>$15 trillion and a population of over 440 million</strong>, the <b>EU</b> is not only one of the world's largest economies but also a significant force in shaping global affairs. Established in the aftermath of World War II, the <b>EU</b> has evolved into a supranational entity, characterized by its robust economy, shared institutions, and a commitment to upholding democratic principles, human rights, and the rule of law.
+            </p>
+          </div>
+          <div class="righttext">
+            <p>At the core of the <b>EU's</b> influence are its impressive economic output and a range of crucial indices. These elements form the foundation for the insights presented in the following visualizations. Beyond its borders, the <b>EU</b> plays a pivotal role in shaping the future of Europe and addressing global challenges, leveraging its substantial economic strength and key indices to make a significant impact on the world stage,contributing to global stability and prosperity while championing a world of interconnected nations working together for the common good. </p>
+          </div>
+        </div>
+        <hr>
+        <!-- Map -->
+        <div class="map-container">
+          <div class="map-title">
+            <h2>Economy</h2>
+          </div>
+          <div class="map-text">
+            <p>Understanding the economic landscape of the <b>EU</b> is key to comprehending its influence and policies. Explore essential aspects of the <b>EU's</b> economy, from GDP per capita to growth rates and budget allocations. </p>
+          </div>
+          <div class="map" id="map"></div>
+        </div>
+        <!-- Line -->
+        <div class="linechart-container">
+          <div class="linechart" id="linechart"></div>
+          <div class="linetext">
+            <p>
+              <strong>Importance of <g>GDP</g>: </strong>
+              <g>GDP</g> is a vital metric, providing insights into a nation's economic health. A strong <g>GDP</g> leads to better public services and an improved standard of living.
+            </p>
+            <p>
+              <strong>
+                <g>GDP</g> per Capita:
+              </strong>
+              <g>GDP</g> per capita reflects the average standard of living in a country. It's a key indicator for assessing the quality of life, economic disparities, and international comparisons.
+            </p>
+            <p>
+              <strong>
+                <g>GDP</g> Growth Rate:
+              </strong> The <g>GDP</g> growth rate indicates economic performance and influences investment, job creation, and business confidence, making it a vital measure of an economy's health and vitality.
+            </p>
+            <p>
+              <strong>
+                <g>GDP</g> and Spending:
+              </strong> A robust <g>GDP</g> influences resource allocation and government spending. It impacts investments in education, healthcare, and infrastructure, shaping a nation's future development.
+            </p>
+          </div>
+        </div>
+        <div class="pie-container">
+          <div class="pie" id="pie"></div>
+          <div class="pietext">
+            <p>
+              <strong>
+                <b>EU</b> Budget Spending: </strong> This budget plays a pivotal role in strategically investing resources to support various initiatives and policies aimed at fostering economic growth, social development, and sustainability within the <b>EU.</b>
+            </p>
+            <p>
+              <strong>Economic Resilience:</strong> The allocation of <strong>93.9%</strong> of the <b>EU's</b> budget to <i>"Growth"</i> in 2019 reflects a commitment to economic resilience. This substantial investment aims to bolster the <b>EU's</b> ability to withstand economic shocks and uncertainties, ensuring the region's long-term stability and prosperity even in challenging times. It's a proactive measure to fortify the <b>EU's</b> economic foundation.
+          </div>
+        </div>
+        <hr>
+        <!-- Radar and Bar -->
+        <div class="indices">
+          <div class="indices-text">
+            <h2>Indices</h2>
+          </div>
+          <div class="radarbar-container">
+            <!-- Radar -->
+            <div class="radar-title">
+              <h3>Key Index</h3>
+            </div>
+            <div class="radar-text">
+              <br>
+              <p>Human Development Index (HDI), Democracy, Sustainable Development Index (SDI), Happiness, and Gender Equality Index (GEI) provides valuable insights into the quality of life, governance, sustainability, societal contentment, and gender equality, playing a crucial role in guiding policy decisions and shaping public discourse of <b>EU</b>, ultimately contributing to a more informed and progressive society. </p>
+            </div>
+            <div class="radar" id="radar"></div>
+            <!-- Bar -->
+            <div class="bar-title">
+              <h3>Life Expectancy</h3>
+            </div>
+            <div class="bar" id="bar"></div>
+            <div class="bartext">
+              <p>The high life expectancy levels in the <b>EU</b> for all member countries underscore the region's successful approach to ensuring the well-being of its citizens and highlight the positive impact of its policies and institutions. This contributes to a high overall standard of living, making the <b>EU</b> an attractive model for promoting health and longevity. </p>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="conclusion-container">
+          <div class="conclusion-title">
+            <h2>Findings</h2>
+          </div>
+          <hr>
+          <div class="conclusion-text-left">
+            <p>The <b>EU's</b> robust <g>GDP</g> has consistently bolstered its position as a global economic powerhouse, leveraging its formidable economic strength to fuel further growth and enhance the well-being of its citizens. This economic stability has enabled the EU to play a leading role in international cooperation. </p>
+          </div>
+          <div class="conclusion-text-right">
+            <p>This has, in turn, yielded high key indices in the <b>EU</b> and an elevated life expectancy, further solidifying its pivotal role as a Global Economic Superpower. With a commitment to sustainable growth and innovation, the <b>EU</b> continues to set global standards for economic development and well-being. </p>
+          </div>
+        </div>
+        <hr>
+        <h5>Visualization made by Gareth Frederick with data from gapminder.org</h5>
+      </div>
     </div>
   </body>
+  <!-- Viz -->
+  <script type="text/javascript">
+    var spec1 = "EU_map.json";
+    vegaEmbed("#map", spec1, {
+      "actions": false
+    }).then(function(result) {}).catch(console.error);
+    var spec2 = "linechart.json";
+    vegaEmbed("#linechart", spec2, {
+      "actions": false
+    }).then(function(result) {}).catch(console.error);
+    var spec3 = "pie.json";
+    vegaEmbed("#pie", spec3, {
+      "actions": false
+    }).then(function(result) {}).catch(console.error);
+    var spec4 = "radar.json";
+    vegaEmbed("#radar", spec4, {
+      "actions": false
+    }).then(function(result) {}).catch(console.error);
+    var spec5 = "barchart.json";
+    vegaEmbed("#bar", spec5, {
+      "actions": false
+    }).then(function(result) {}).catch(console.error);
+  </script>
 </html>
