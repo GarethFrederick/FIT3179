@@ -1,0 +1,179 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 470,
+  "height": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/eu_growth.csv"
+  },
+  "params": [
+    {
+      "name": "Country_selection",
+      "value": "Average",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Average",
+          "Belgium",
+          "Bulgaria",
+          "Cyprus",
+          "Czechia",
+          "Germany",
+          "Denmark",
+          "Spain",
+          "Estonia",
+          "Finland",
+          "France",
+          "Greece",
+          "Croatia",
+          "Hungary",
+          "Ireland",
+          "Italy",
+          "Lithuania",
+          "Luxembourg",
+          "Latvia",
+          "Malta",
+          "Netherlands",
+          "Poland",
+          "Portugal",
+          "Romania",
+          "Slovakia",
+          "Slovenia",
+          "Sweden"
+        ],
+        "labels": [
+          "Average",
+          "Belgium",
+          "Bulgaria",
+          "Cyprus",
+          "Czechia",
+          "Germany",
+          "Denmark",
+          "Spain",
+          "Estonia",
+          "Finland",
+          "France",
+          "Greece",
+          "Croatia",
+          "Hungary",
+          "Ireland",
+          "Italy",
+          "Lithuania",
+          "Luxembourg",
+          "Latvia",
+          "Malta",
+          "Netherlands",
+          "Poland",
+          "Portugal",
+          "Romania",
+          "Slovakia",
+          "Slovenia",
+          "Sweden"
+        ],
+        "name": "Country: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.country == 'Average' ||Country_selection == null || datum.country == Country_selection"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": true
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal",
+          "axis": {
+            "title": "Year",
+            "labelFontSize": 12,
+            "titleFontSize": 14
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {
+            "title": "Growth Rate (%)",
+            "labelFontSize": 12,
+            "titleFontSize": 14
+          },
+          "scale": {
+            "domain": [
+              -20,
+              20
+            ]
+          }
+        },
+        "color": {
+          "field": "country",
+          "type": "nominal",
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "title": "Country/Measure "
+          },
+          {
+            "field": "year",
+            "title": "Year: ",
+            "type": "temporal",
+            "timeUnit": "year"
+          },
+          {
+            "field": "value",
+            "title": "Growth Rate (%) ",
+            "format": ".3f"
+          }
+        ],
+        "opacity": {
+          "condition": {
+            "test": "datum.country == Country_selection",
+            "value": 1
+          },
+          "value": 0.5
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "grey",
+        "strokeWidth": 2.5,
+        "opacity": 0.1
+      },
+      "encoding": {
+        "x": {
+          "value": 108
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dx": -35,
+        "dy": -172,
+        "color": "black",
+        "fontSize": 14
+      },
+      "encoding": {
+        "text": {
+          "value": "2008 Global Financial Crisis"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "strokeWidth": 0
+    },
+    "background": "#F5F5F5"
+  }
+}

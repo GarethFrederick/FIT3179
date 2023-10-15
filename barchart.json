@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/life_expectancy.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "ordinal",
+      "sort": "-y",
+      "axis": {
+        "labelAngle": -90,
+        "title": "Countries"
+      }
+    },
+    "y": {
+      "field": "2019",
+      "type": "quantitative",
+      "axis": {
+        "labelAngle": 0,
+        "title": "Life Expectancy(Years)"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "country",
+        "title": "Country"
+      },
+      {
+        "field": "2019",
+        "title": "Life Expectancy(Years)"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "strokeWidth": 1
+    },
+    "background": "#F5F5F5"
+  }
+}

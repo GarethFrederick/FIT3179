@@ -1,0 +1,306 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A radar chart example, showing multiple dimensions in a radial layout.",
+  "width": 450,
+  "height": 450,
+  "padding": 75,
+  "autosize": {
+    "type": "none",
+    "contains": "padding"
+  },
+  "signals": [
+    {
+      "name": "radius",
+      "update": "width / 2"
+    },
+    {
+      "name": "year_selection",
+      "value": "2006",
+      "bind": {
+        "input": "range",
+        "min": 2006,
+        "max": 2019,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "dataset",
+      "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/Index.csv",
+      "format": {
+        "type": "csv",
+        "delimiter": ","
+      }
+    },
+    {
+      "name": "table",
+      "source": "dataset",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.Year == year_selection"
+        }
+      ]
+    },
+    {
+      "name": "keys",
+      "source": "dataset",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "Index"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "angular",
+      "type": "point",
+      "range": {
+        "signal": "[-PI, PI]"
+      },
+      "padding": 0.5,
+      "domain": {
+        "data": "table",
+        "field": "Index"
+      }
+    },
+    {
+      "name": "radial",
+      "type": "linear",
+      "range": {
+        "signal": "[0, radius]"
+      },
+      "zero": true,
+      "nice": false,
+      "domain": {
+        "data": "table",
+        "field": "value"
+      },
+      "domainMin": 0
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "data": "table",
+        "field": "Year"
+      },
+      "range": {
+        "scheme": "category10"
+      }
+    }
+  ],
+  "encode": {
+    "enter": {
+      "x": {
+        "signal": "radius"
+      },
+      "y": {
+        "signal": "radius"
+      }
+    }
+  },
+  "marks": [
+    {
+      "type": "group",
+      "name": "categories",
+      "zindex": 1,
+      "from": {
+        "facet": {
+          "data": "table",
+          "name": "facet",
+          "groupby": [
+            "Year"
+          ]
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "name": "category-line",
+          "from": {
+            "data": "facet"
+          },
+          "encode": {
+            "enter": {
+              "interpolate": {
+                "value": "linear-closed"
+              },
+              "x": {
+                "signal": "scale('radial', datum.value) * cos(scale('angular', datum.Index))"
+              },
+              "y": {
+                "signal": "scale('radial', datum.value) * sin(scale('angular', datum.Index))"
+              },
+              "stroke": {
+                "scale": "color",
+                "field": "Year"
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "fill": {
+                "scale": "color",
+                "field": "Year"
+              },
+              "fillOpacity": {
+                "value": 0.5
+              }
+            },
+            "update": {
+              "tooltip": {
+                "signal": "datum.Index + ': ' + datum.value"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "name": "value-text",
+          "from": {
+            "data": "category-line"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "field": "x"
+              },
+              "y": {
+                "field": "y"
+              },
+              "text": {
+                "field": "datum.value"
+              },
+              "align": {
+                "value": "center"
+              },
+              "baseline": {
+                "value": "middle"
+              },
+              "fill": {
+                "value": "black"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "rule",
+      "name": "radial-grid",
+      "from": {
+        "data": "keys"
+      },
+      "zindex": 0,
+      "encode": {
+        "enter": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "value": 0
+          },
+          "x2": {
+            "signal": "radius * cos(scale('angular', datum.Index))"
+          },
+          "y2": {
+            "signal": "radius * sin(scale('angular', datum.Index))"
+          },
+          "stroke": {
+            "value": "lightgray"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "key-label",
+      "from": {
+        "data": "keys"
+      },
+      "zindex": 1,
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "(radius + 5) * cos(scale('angular', datum.Index))"
+          },
+          "y": {
+            "signal": "(radius + 5) * sin(scale('angular', datum.Index))"
+          },
+          "text": {
+            "field": "Index"
+          },
+          "align": [
+            {
+              "test": "abs(scale('angular', datum.Index)) > PI / 2",
+              "value": "right"
+            },
+            {
+              "value": "left"
+            }
+          ],
+          "baseline": [
+            {
+              "test": "scale('angular', datum.Index) > 0",
+              "value": "top"
+            },
+            {
+              "test": "scale('angular', datum.Index) == 0",
+              "value": "middle"
+            },
+            {
+              "value": "bottom"
+            }
+          ],
+          "fill": {
+            "value": "black"
+          },
+          "fontWeight": {
+            "value": "bold"
+          }
+        }
+      }
+    },
+    {
+      "type": "line",
+      "name": "outer-line",
+      "from": {
+        "data": "radial-grid"
+      },
+      "encode": {
+        "enter": {
+          "interpolate": {
+            "value": "linear-closed"
+          },
+          "x": {
+            "field": "x2"
+          },
+          "y": {
+            "field": "y2"
+          },
+          "stroke": {
+            "value": "lightgray"
+          },
+          "strokeWidth": {
+            "value": 2
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "strokeWidth": 0
+    },
+    "background": "#F5F5F5"
+  }
+}

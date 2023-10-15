@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 350,
+  "height": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/GarethFrederick/FIT3179/main/Data/budget.csv"
+  },
+  "mark": "arc",
+  "encoding": {
+    "theta": {
+      "field": "Commitment",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "Area",
+      "type": "nominal",
+      "scale": {
+        "range": [
+          "#1f77b4",
+          "#aec7e8",
+          "#ff7f0e",
+          "#ffbb78",
+          "#2ca02c",
+          "#98df8a"
+        ]
+      },
+      "legend": {
+        "orient": "right"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Area",
+        "type": "nominal",
+        "title": "Area"
+      },
+      {
+        "field": "Commitment",
+        "type": "quantitative",
+        "title": "Commitment in € billion "
+      },
+      {
+        "field": "Percentage",
+        "type": "nominal",
+        "title": "Percentage "
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "strokeWidth": 0
+    },
+    "background": "#F5F5F5"
+  }
+}
