@@ -83,7 +83,7 @@
         "title": "Country "
       },
       {
-        "field": "GDP/Capita",
+        "field": "GDP/Capita", "format": ",",
         "type": "quantitative",
         "title": "GDP per Capita (US$) "
       }
